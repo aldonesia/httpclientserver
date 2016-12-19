@@ -1,0 +1,6 @@
+<Files *.php>
+Order Deny,Allow
+Deny from All
+</Files>
+
+ErrorDocument 403 /misc/403.php
