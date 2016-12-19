@@ -50,6 +50,10 @@ def main():
 							t = threading.Thread(target=HtmlResponse(sock,403,"403.html"))
 							threads.append(t)
 							t.start()
+					elif request_file[1] == '/a.html':
+						t = threading.Thread(target=HtmlResponse(sock,301,"301.html"))
+						threads.append(t)
+						t.start()
 					else:
 						t = threading.Thread(target=HtmlResponse(sock,404,"404.html"))
 						threads.append(t)
@@ -70,6 +74,8 @@ def StatusCode(conn_socket,status, filesize, response_content):
 		response_header = 'HTTP/1.1 404 Not Found\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length:' + str(filesize) + '\r\n\r\n'
 	if (status==403):
 		response_header = 'HTTP/1.1 403 Forbidden\r\nYou don`t have permission to access\r\nContent-Length:' + str(filesize) + '\r\n\r\n'
+	if (status==301):
+		response_header = 'HTTP/1.1 301 Moved Permanently\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length:'+ str(filesize) + '\r\n\r\n'
 	print response_header
 	conn_socket.sendall(response_header + response_content)
 	return

@@ -17,10 +17,10 @@ def method(jenis, message):
 		forbid = message[2].split('.')
 		print data[0] + '\r\n\r\n'
 		response_header = data[0].split('\r\n')
-		print response_header
+		#print response_header
 		print data[0]
 		content_length = response_header[2].split(':')[1]
-		if message[-1] == '' or forbid[1] == 'php' or message[-1] == 'index.html' or 'Not Found' in data[0]:
+		if message[-1] == '' or forbid[1] == 'php' or message[-1] == 'index.html' or 'Not Found' or forbid[0] == 'a' in data[0]:
 			print data[1]
 	elif (jenis=='HEAD'):
 		client_http = socket(AF_INET, SOCK_STREAM)
